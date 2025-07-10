@@ -9,8 +9,8 @@ Este repositório contém o projeto desenvolvido para o Tech Challenge da Fase 1
 O sistema é composto por:
 - Web Scraper automatizado para coletar dados do site [Books to Scrape](https://books.toscrape.com/)
 - Armazenamento estruturado em CSV
--  API RESTful para servir os dados extraídos
-- ☁Deploy da API em ambiente público
+- API RESTful para servir os dados extraídos
+- Deploy da API em ambiente público
 - Plano arquitetural pensado para expansão futura com modelos de Machine Learning
 
 ---
