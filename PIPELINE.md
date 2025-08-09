@@ -244,8 +244,7 @@ graph LR
 api/
 ├── database.py     # Database connection & models
 ├── schemas.py      # Pydantic validation schemas
-├── crud.py         # Database operations
-└── models.py       # SQLAlchemy models
+└── crud.py         # Database operations
 ```
 
 **🔧 Tecnologias:**

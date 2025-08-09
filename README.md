@@ -34,7 +34,6 @@ book-recommender-api-pipeline/
 │   └── csv_to_db.py           # Carregador: CSV → Database
 ├── 📁 api/                     # Camada de Aplicação
 │   ├── database.py            # Configuração do ORM e modelos
-│   ├── models.py              # Modelos de dados (SQLAlchemy)
 │   ├── schemas.py             # Schemas de validação (Pydantic)
 │   └── crud.py                # Operações de banco (CRUD)
 ├── 📄 main.py                  # Aplicação FastAPI principal
@@ -207,7 +206,7 @@ python scripts/csv_to_db.py
 #### **Método 1: Script de Execução (Recomendado)**
 ```bash
 # Execute o script otimizado
-python run_api.py
+python main.py
 ```
 
 #### **Método 2: Comando Direto**
@@ -924,7 +923,7 @@ print(f"Preço médio: ${stats['average_price']:.2f}")
 Execute o script de testes para verificar todos os endpoints:
 
 ```bash
-python test_api.py
+python test_production.py
 ```
 
 **Saída esperada:**
