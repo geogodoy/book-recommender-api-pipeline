@@ -49,6 +49,8 @@ book-recommender-api-pipeline/
 [Books to Scrape] → [Web Scraper] → [CSV] → [ETL Pipeline] → [SQLite] → [FastAPI] → [Cliente]
 ```
 
+> 📊 **Documentação Detalhada:** Para uma análise completa do pipeline com diagramas interativos, métricas de performance e arquitetura detalhada, consulte [PIPELINE.md](./PIPELINE.md)
+
 ## 🚀 Instalação e Configuração
 
 ### 📋 Pré-requisitos
@@ -1215,6 +1217,19 @@ Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Ch
 
 ---
 
-**⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!**
+## 📚 Documentação Completa
 
-**📧 Dúvidas ou sugestões:** [Abra uma issue](https://github.com/seu-usuario/book-recommender-api-pipeline/issues)
+| Documento | Descrição | Conteúdo |
+|-----------|-----------|----------|
+| **[README.md](./README.md)** | Documentação principal | Instalação, configuração, API, exemplos |
+| **[PIPELINE.md](./PIPELINE.md)** | Pipeline de dados detalhado | Arquitetura, diagramas, métricas, fluxos |
+| **[DEPLOY.md](./DEPLOY.md)** | Instruções de deploy | Produção, cloud, configurações |
+| **[DOCKER_DEPLOY.md](./DOCKER_DEPLOY.md)** | Deploy com containers | Docker, Kubernetes, orquestração |
+
+### 🔗 Links Rápidos
+- 🚀 [Início Rápido](#-setup-automático-recomendado)
+- 🏗️ [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
+- 📚 [Documentação da API](#-documentação-completa-da-api)
+- 🧪 [Exemplos de Uso](#-exemplos-práticos-de-uso)
+- 🐳 [Deploy Docker](./DOCKER_DEPLOY.md)
+- 🔧 [Troubleshooting](#-troubleshooting)
