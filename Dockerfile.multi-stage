@@ -46,7 +46,7 @@ RUN mkdir -p /app/data && \
 USER appuser
 
 # Run the production setup
-RUN python setup_production.py
+RUN python setup_production_smart.py
 
 # Expose port
 EXPOSE $PORT

@@ -1,5 +1,5 @@
 """
-Setup script para ambiente de produção (Render)
+Smart Production Setup - Evita duplicação no deploy
 Tech Challenge - Pós-Tech | Fase 1 - Machine Learning Engineering
 """
 
@@ -33,6 +33,33 @@ def setup_data_directory():
     os.makedirs("data", exist_ok=True)
     logger.info("✅ Data directory ready!")
 
+def check_existing_data():
+    """Check if we already have valid data"""
+    csv_path = "data/books.csv"
+    db_path = "data/books.db"
+    
+    # Check if CSV exists and has content
+    csv_exists = os.path.exists(csv_path) and os.path.getsize(csv_path) > 1000  # At least 1KB
+    
+    # Check if database exists and has content
+    if os.path.exists(db_path):
+        try:
+            # Quick check if database has data
+            import sqlite3
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM books LIMIT 1")
+            count = cursor.fetchone()[0]
+            conn.close()
+            db_has_data = count > 0
+        except:
+            db_has_data = False
+    else:
+        db_has_data = False
+    
+    logger.info(f"📊 Data status: CSV exists: {csv_exists}, DB has data: {db_has_data}")
+    return csv_exists and db_has_data
+
 def run_scraper():
     """Run the web scraper to get fresh data"""
     logger.info("🕷️  Running web scraper for fresh data...")
@@ -62,8 +89,8 @@ def setup_database():
         return False
 
 def main():
-    """Main production setup process"""
-    logger.info("🚀 Setting up Book Recommender API for Production...")
+    """Smart production setup process"""
+    logger.info("🚀 Setting up Book Recommender API for Production (Smart Mode)...")
     logger.info("=" * 60)
     
     # Step 1: Install dependencies
@@ -74,19 +101,29 @@ def main():
     # Step 2: Setup data directory
     setup_data_directory()
     
-    # Step 3: Run scraper to get fresh data
-    if not run_scraper():
-        logger.error("❌ Failed to scrape data.")
-        sys.exit(1)
+    # Step 3: Smart data management
+    if check_existing_data():
+        logger.info("📊 Existing valid data found, skipping scraping...")
+        logger.info("🔄 This prevents unnecessary load on the source website")
+        logger.info("⚡ Deploy will be faster!")
+    else:
+        logger.info("📄 No valid data found, running scraper...")
+        if not run_scraper():
+            logger.error("❌ Failed to scrape data.")
+            sys.exit(1)
     
-    # Step 4: Setup database
-    if not setup_database():
-        logger.error("❌ Failed to setup database.")
-        sys.exit(1)
+    # Step 4: Setup database (only if needed)
+    if not os.path.exists("data/books.db") or os.path.getsize("data/books.db") < 1000:
+        if not setup_database():
+            logger.error("❌ Failed to setup database.")
+            sys.exit(1)
+    else:
+        logger.info("🗃️  Existing database found, skipping reload...")
     
     logger.info("=" * 60)
-    logger.info("✅ Production setup completed successfully!")
+    logger.info("✅ Smart production setup completed successfully!")
     logger.info("🚀 API will be available shortly...")
+    logger.info("💡 This deploy was optimized to avoid unnecessary scraping!")
 
 if __name__ == "__main__":
     main()

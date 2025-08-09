@@ -1,4 +1,4 @@
-# Use Python 3.11 slim image for smaller size
+# Dockerfile otimizado que evita re-scraping desnecessário
 FROM python:3.11-slim
 
 # Set working directory
@@ -28,7 +28,7 @@ COPY . .
 # Create data directory
 RUN mkdir -p /app/data
 
-# Run the production setup (scraping + database setup)
+# Use smart setup that avoids unnecessary scraping
 RUN python setup_production_smart.py
 
 # Expose port
