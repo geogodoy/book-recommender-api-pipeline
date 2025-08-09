@@ -48,11 +48,15 @@ def extract_book_info(article, category_name):
     link = article.h3.a['href'].replace('../../../', CATALOGUE_URL)
 
     # Preço com tratamento seguro
-    price_text = article.select_one(".price_color").text.strip().replace('£', '').replace(',', '.')
-    try:
-        price = float(price_text)
-    except ValueError:
-        price = None  # ou 0.0 se preferir valores numéricos fixos
+    price_element = article.select_one(".price_color")
+    if price_element:
+        price_text = price_element.text.strip().replace('£', '').replace(',', '.')
+        try:
+            price = float(price_text)
+        except ValueError:
+            price = 0.0
+    else:
+        price = 0.0
 
     rating = article.p['class'][1]
     availability = article.select_one(".instock.availability").text.strip()
