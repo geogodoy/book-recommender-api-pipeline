@@ -12,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from api.database import SessionLocal, create_tables, Book
 from api import schemas
+from sqlalchemy import func
 import logging
 
 # Setup logging
@@ -87,7 +88,7 @@ def load_csv_to_database(csv_file_path: str = "data/books.csv"):
         # Show some statistics
         categories = db.query(Book.category).distinct().count()
         avg_price = db.query(Book).filter(Book.price > 0).with_entities(
-            db.func.avg(Book.price)
+            func.avg(Book.price)
         ).scalar()
         
         logger.info(f"Categories: {categories}")
