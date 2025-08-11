@@ -3,14 +3,19 @@ FastAPI application for Book Recommender API
 Tech Challenge - Pós-Tech | Fase 1 - Machine Learning Engineering
 """
 
+from datetime import timedelta
+
 from fastapi import FastAPI, Depends, HTTPException, Query
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from typing import List, Optional
 import uvicorn
 
 from api import crud, schemas
+from api.auth import create_access_token, get_current_user
+from api.users import authenticate_user
 from api.database import Book
-from api.database import SessionLocal, engine, get_db, create_tables
+from api.database import get_db, create_tables
 
 # Create tables
 create_tables()
@@ -40,7 +45,8 @@ async def root():
 def get_books(
     skip: int = Query(0, ge=0, description="Number of books to skip"),
     limit: int = Query(100, ge=1, le=1000, description="Number of books to return"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
     """Lista todos os livros disponíveis na base de dados"""
     books = crud.get_books(db, skip=skip, limit=limit)
@@ -48,7 +54,7 @@ def get_books(
 
 
 @app.get("/api/v1/books/{book_id}", response_model=schemas.Book)
-def get_book(book_id: int, db: Session = Depends(get_db)):
+def get_book(book_id: int, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
     """Retorna detalhes completos de um livro específico pelo ID"""
     book = crud.get_book(db, book_id=book_id)
     if book is None:
@@ -62,7 +68,8 @@ def search_books(
     category: Optional[str] = Query(None, description="Search by category"),
     skip: int = Query(0, ge=0, description="Number of books to skip"),
     limit: int = Query(100, ge=1, le=1000, description="Number of books to return"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
     """Busca livros por título e/ou categoria"""
     if not title and not category:
@@ -73,7 +80,7 @@ def search_books(
 
 
 @app.get("/api/v1/categories", response_model=List[str])
-def get_categories(db: Session = Depends(get_db)):
+def get_categories(db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
     """Lista todas as categorias de livros disponíveis"""
     categories = crud.get_categories(db)
     return categories
@@ -128,14 +135,14 @@ def data_status(db: Session = Depends(get_db)):
 
 # Optional Insights Endpoints
 @app.get("/api/v1/stats/overview", response_model=schemas.StatsOverview)
-def get_stats_overview(db: Session = Depends(get_db)):
+def get_stats_overview(db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
     """Estatísticas gerais da coleção"""
     stats = crud.get_stats_overview(db)
     return schemas.StatsOverview(**stats)
 
 
 @app.get("/api/v1/stats/categories", response_model=List[schemas.CategoryStats])
-def get_category_stats(db: Session = Depends(get_db)):
+def get_category_stats(db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
     """Estatísticas detalhadas por categoria"""
     stats = crud.get_category_stats(db)
     return [schemas.CategoryStats(**stat) for stat in stats]
@@ -144,7 +151,8 @@ def get_category_stats(db: Session = Depends(get_db)):
 @app.get("/api/v1/books/top-rated", response_model=List[schemas.Book])
 def get_top_rated_books(
     limit: int = Query(20, ge=1, le=100, description="Number of top books to return"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
     """Lista os livros com melhor avaliação"""
     books = crud.get_top_rated_books(db, limit=limit)
@@ -157,7 +165,8 @@ def get_books_by_price_range(
     max_price: Optional[float] = Query(None, ge=0, description="Maximum price"),
     skip: int = Query(0, ge=0, description="Number of books to skip"),
     limit: int = Query(100, ge=1, le=1000, description="Number of books to return"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
     """Filtra livros dentro de uma faixa de preço específica"""
     if min_price is not None and max_price is not None and min_price > max_price:
@@ -165,6 +174,24 @@ def get_books_by_price_range(
     
     books = crud.get_books_by_price_range(db, min_price=min_price, max_price=max_price, skip=skip, limit=limit)
     return books
+
+
+@app.post("/api/v1/auth/login")
+def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    print("Olá")
+    user = authenticate_user(form_data.username, form_data.password)
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=60)
+    access_token = create_access_token(
+        data={"sub": user["username"]}, 
+        expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 if __name__ == "__main__":
