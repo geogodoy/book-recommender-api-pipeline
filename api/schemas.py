@@ -3,7 +3,7 @@ Pydantic models for request/response validation
 """
 
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import Optional
 
 
 class BookBase(BaseModel):
@@ -64,3 +64,8 @@ class HealthCheck(BaseModel):
     status: str
     database_connected: bool
     total_books: int
+
+class Token(BaseModel):
+    access_token: str
+    refresh_token: Optional[str] = None
+    token_type: str

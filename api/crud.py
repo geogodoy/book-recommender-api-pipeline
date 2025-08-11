@@ -7,6 +7,17 @@ from sqlalchemy import func, and_
 from typing import List, Optional
 from . import schemas
 from .database import Book
+from passlib.context import CryptContext
+
+# Configuração para hashear senhas
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# Usuário de teste hardcoded
+TEST_USER = {
+    "username": "admin",
+    "password": pwd_context.hash("admin123"),  # Senha hasheada: "testpassword"
+    "role": "admin"
+}
 
 
 def get_book(db: Session, book_id: int) -> Optional[Book]:
@@ -140,3 +151,18 @@ def bulk_create_books(db: Session, books: List[schemas.BookCreate]) -> int:
     db.add_all(db_books)
     db.commit()
     return len(db_books)
+
+
+def get_user_by_username(username: str) -> Optional[dict]:
+    """
+    Retrieve a test user by username (no database).
+    
+    Args:
+        username (str): Username to search for
+        
+    Returns:
+        Optional[dict]: Dictionary with user details (username, role, password) if found, None otherwise
+    """
+    if username == TEST_USER["username"]:
+        return TEST_USER
+    return None
