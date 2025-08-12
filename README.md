@@ -121,27 +121,9 @@ As variáveis de ambiente e o uso de arquivo `.env` estão documentados em `INST
 
 ###  Monitoramento da Execução
 
-#### **Verificação Rápida**
-```bash
-# Teste se a API está respondendo
-curl http://localhost:8000/api/v1/status
+Para exemplos práticos de chamadas (cURL e Python) com respostas, consulte:
 
-# Resposta esperada:
-# {"status": "ok", "message": "API is running"}
-```
-
-#### **Health Check Completo**
-```bash
-# Verificação completa com status do banco
-curl http://localhost:8000/api/v1/health
-
-# Resposta esperada:
-# {
-#   "status": "healthy",
-#   "database_connected": true,
-#   "total_books": 1
-# }
-```
+- [Exemplos de Chamadas](./API_EXAMPLES.md)
 
 #### **Logs da Aplicação**
 ```bash
@@ -359,4 +341,5 @@ psutil==5.9.8           # System monitoring
 ###  Links Rápidos
 -  [Instalação & Configuração](./INSTALLATION.md)
 -  [Referência da API](./API_REFERENCE.md)
+-  [Exemplos de Chamadas](./API_EXAMPLES.md)
 -  [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
