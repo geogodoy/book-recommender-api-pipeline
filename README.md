@@ -64,7 +64,7 @@ As instruções completas de execução, URLs de acesso, monitoramento, performa
 
 ###  Configuração de Ambiente
 
-As variáveis de ambiente e o uso de arquivo `.env` estão documentados em `INSTALLATION.md`.
+As variáveis de ambiente e o uso de arquivo `.env` estão documentados em [Instalação e Configuração](./INSTALLATION.md)
 
 ###  Monitoramento da Execução
 
