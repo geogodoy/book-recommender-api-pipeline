@@ -1108,15 +1108,6 @@ psutil==5.9.8           # System monitoring
 
 ---
 
-##  Documentação Completa
-
-| Documento | Descrição | Conteúdo |
-|-----------|-----------|----------|
-| **[README.md](./README.md)** | Documentação principal | Instalação, configuração, API, exemplos |
-| **[PIPELINE.md](./PIPELINE.md)** | Pipeline de dados detalhado | Arquitetura, diagramas, métricas, fluxos |
-| **[DEPLOY.md](./DEPLOY.md)** | Instruções de deploy | Produção, cloud, configurações |
-| **[DOCKER_DEPLOY.md](./DOCKER_DEPLOY.md)** | Deploy com containers | Docker, Kubernetes, orquestração |
-
 ###  Links Rápidos
 -  [Início Rápido](#-setup-automático-recomendado)
 -  [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
