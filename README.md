@@ -58,62 +58,9 @@ As instruções completas de instalação, setup, configuração de ambiente e s
 
 ##  Executando a API
 
-###  Métodos de Execução
+As instruções completas de execução, URLs de acesso, monitoramento, performance e como parar a API foram movidas para um guia dedicado:
 
-#### **Método 1: Script de Execução (Recomendado)**
-```bash
-# Execute o script otimizado
-python main.py
-```
-
-#### **Método 2: Comando Direto**
-```bash
-# Execução direta da aplicação
-python main.py
-```
-
-#### **Método 3: Uvicorn Manual**
-```bash
-# Execução com controle total dos parâmetros
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-#### **Método 4: Com Ambiente Virtual**
-```bash
-# Ative o ambiente virtual primeiro
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
-
-# Execute a API
-python main.py
-```
-
-#### **Método 5: Produção com Gunicorn**
-```bash
-# Para ambiente de produção
-gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
-```
-
-#### **Método 6: Docker**
-```bash
-# Usando Docker
-docker run -p 8000:8000 book-recommender-api
-
-# Ou com Docker Compose
-docker-compose up
-```
-
-###  URLs de Acesso
-
-Após iniciar a API, acesse:
-
-| Serviço | URL | Descrição |
-|---------|-----|-----------|
-| **API Principal** | `http://localhost:8000` | Endpoint raiz |
-| **Documentação Swagger** | `http://localhost:8000/docs` | Interface interativa da API |
-| **Documentação ReDoc** | `http://localhost:8000/redoc` | Documentação alternativa |
-| **Health Check** | `http://localhost:8000/api/v1/health` | Status da API |
-| **Status Rápido** | `http://localhost:8000/api/v1/status` | Verificação básica |
+- Consulte `USAGE.md`: [Execução da API (Runbook)](./USAGE.md)
 
 ###  Configuração de Ambiente
 
@@ -155,19 +102,7 @@ gunicorn main:app \
 
 ###  Parar a API
 
-```bash
-# Se executando em primeiro plano: Ctrl+C
-
-# Se executando em background:
-# Encontre o processo
-ps aux | grep "python main.py"
-
-# Mate o processo (substitua PID pelo número encontrado)
-kill <PID>
-
-# Ou force kill se necessário
-kill -9 <PID>
-```
+Consulte o guia `USAGE.md`.
 
 ##  Documentação da API
 
@@ -340,6 +275,7 @@ psutil==5.9.8           # System monitoring
 
 ###  Links Rápidos
 -  [Instalação & Configuração](./INSTALLATION.md)
+-  [Execução da API](./USAGE.md)
 -  [Referência da API](./API_REFERENCE.md)
 -  [Exemplos de Chamadas](./API_EXAMPLES.md)
 -  [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
