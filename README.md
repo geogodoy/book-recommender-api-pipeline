@@ -4,69 +4,69 @@
 
 Uma API RESTful completa para consulta de livros com pipeline de dados automatizado, desenvolvida como parte do Tech Challenge da primeira fase do curso de Machine Learning Engineering.
 
-## 📋 Descrição do Projeto
+##  Descrição do Projeto
 
 Este projeto implementa um **pipeline completo de dados** e uma **API RESTful robusta** para servir informações de livros extraídas via web scraping do site [Books to Scrape](https://books.toscrape.com/). 
 
-### 🎯 Objetivos
+###  Objetivos
 - **Extração automatizada** de dados de livros via web scraping
 - **API RESTful** performática com documentação interativa
 - **Pipeline ETL** completo (Extração → Transformação → Carregamento)
 - **Arquitetura escalável** para integração futura com modelos de ML
 - **Containerização** com Docker para deploy simplificado
 
-### 🔧 Características Técnicas
+###  Características Técnicas
 - **Framework:** FastAPI com documentação automática (Swagger/ReDoc)
 - **Banco de Dados:** SQLite com SQLAlchemy ORM
 - **Validação:** Pydantic para schemas de request/response
 - **Performance:** Endpoints otimizados com indexação de banco
 - **Observabilidade:** Health checks e endpoints de status
 
-## 🏗️ Arquitetura do Sistema
+##  Arquitetura do Sistema
 
 ```
 book-recommender-api-pipeline/
-├── 📁 data/                    # Camada de Dados
-│   ├── books.csv              # Dados extraídos (formato raw)
-│   └── books.db               # Base de dados SQLite (formato estruturado)
-├── 📁 scripts/                 # Pipeline ETL
-│   ├── scrape_books.py        # Extrator: Web scraping automatizado
-│   └── csv_to_db.py           # Carregador: CSV → Database
-├── 📁 api/                     # Camada de Aplicação
-│   ├── database.py            # Configuração do ORM e modelos
-│   ├── schemas.py             # Schemas de validação (Pydantic)
-│   └── crud.py                # Operações de banco (CRUD)
-├── 📄 main.py                  # Aplicação FastAPI principal
-├── 📄 setup.py                 # Automação de setup inicial
-├── 📄 requirements.txt         # Dependências do projeto
-├── 📄 Dockerfile              # Containerização
-└── 📄 docker-compose.yml      # Orquestração de containers
+  data/                    # Camada de Dados
+    books.csv              # Dados extraídos (formato raw)
+    books.db               # Base de dados SQLite (formato estruturado)
+  scripts/                 # Pipeline ETL
+    scrape_books.py        # Extrator: Web scraping automatizado
+    csv_to_db.py           # Carregador: CSV → Database
+  api/                     # Camada de Aplicação
+    database.py            # Configuração do ORM e modelos
+    schemas.py             # Schemas de validação (Pydantic)
+    crud.py                # Operações de banco (CRUD)
+  main.py                  # Aplicação FastAPI principal
+  setup.py                 # Automação de setup inicial
+  requirements.txt         # Dependências do projeto
+  Dockerfile              # Containerização
+  docker-compose.yml      # Orquestração de containers
 ```
 
-### 🔄 Fluxo de Dados
+###  Fluxo de Dados
 ```
 [Books to Scrape] → [Web Scraper] → [CSV] → [ETL Pipeline] → [SQLite] → [FastAPI] → [Cliente]
 ```
 
-> 📊 **Documentação Detalhada:** Para uma análise completa do pipeline com diagramas interativos, métricas de performance e arquitetura detalhada, consulte [PIPELINE.md](./PIPELINE.md)
+>  **Documentação Detalhada:** Para uma análise completa do pipeline com diagramas interativos, métricas de performance e arquitetura detalhada, consulte [PIPELINE.md](./PIPELINE.md)
 
-## 🚀 Instalação e Configuração
+##  Instalação e Configuração
 
-### 📋 Pré-requisitos
+###  Pré-requisitos
 - **Python 3.8+** (recomendado: 3.9 ou superior)
 - **pip** (gerenciador de pacotes Python)
 - **Git** (para clonagem do repositório)
 - **4GB RAM** mínimo para processamento dos dados
 - **Conexão com internet** para web scraping inicial
 
-### ⚡ Setup Automático (Recomendado)
+###  Setup Automático (Recomendado)
 
 O projeto inclui um script de setup totalmente automatizado que:
-- ✅ Cria ambiente virtual Python
-- ✅ Instala todas as dependências
-- ✅ Executa web scraping (se necessário)
-- ✅ Configura o banco de dados SQLite
-- ✅ Valida a instalação
+-  Cria ambiente virtual Python
+-  Instala todas as dependências
+-  Executa web scraping (se necessário)
+-  Configura o banco de dados SQLite
+-  Valida a instalação
 
 ```bash
 # Clone o repositório
@@ -79,22 +79,22 @@ python setup.py
 
 **Saída esperada:**
 ```
-🚀 Setting up Book Recommender API...
+ Setting up Book Recommender API...
 ==================================================
-🐍 Creating Python virtual environment...
-✅ Virtual environment created successfully!
-📦 Installing required dependencies...
-✅ Dependencies installed successfully!
-📄 No existing data found, running scraper...
-🕷️  Running web scraper...
-✅ Scraping completed!
-🗃️  Setting up database...
-✅ Database setup completed!
+ Creating Python virtual environment...
+ Virtual environment created successfully!
+ Installing required dependencies...
+ Dependencies installed successfully!
+ No existing data found, running scraper...
+  Running web scraper...
+ Scraping completed!
+  Setting up database...
+ Database setup completed!
 ==================================================
-✅ Setup completed successfully!
+ Setup completed successfully!
 ```
 
-### 🔧 Setup Manual (Avançado)
+###  Setup Manual (Avançado)
 
 Para maior controle do processo de instalação:
 
@@ -142,11 +142,11 @@ python -c "
 from api.database import get_db, Book
 from sqlalchemy.orm import Session
 next(get_db()).query(Book).count()
-print('✅ Database OK!')
+print(' Database OK!')
 "
 ```
 
-### 🐳 Instalação com Docker (Opcional)
+###  Instalação com Docker (Opcional)
 
 Para ambiente completamente isolado:
 
@@ -161,7 +161,7 @@ docker run -p 8000:8000 book-recommender-api
 docker-compose up --build
 ```
 
-### 📦 Dependências do Projeto
+###  Dependências do Projeto
 
 ```txt
 requests==2.32.3        # Requisições HTTP para scraping
@@ -175,7 +175,7 @@ gunicorn==21.2.0        # Servidor WSGI para produção
 psutil==5.9.8           # Informações do sistema
 ```
 
-### 🔍 Verificação de Problemas Comuns
+###  Verificação de Problemas Comuns
 
 **Erro de permissão no Python:**
 ```bash
@@ -199,9 +199,9 @@ mkdir -p data
 python scripts/csv_to_db.py
 ```
 
-## 🎯 Executando a API
+##  Executando a API
 
-### 🚀 Métodos de Execução
+###  Métodos de Execução
 
 #### **Método 1: Script de Execução (Recomendado)**
 ```bash
@@ -246,7 +246,7 @@ docker run -p 8000:8000 book-recommender-api
 docker-compose up
 ```
 
-### 📍 URLs de Acesso
+###  URLs de Acesso
 
 Após iniciar a API, acesse:
 
@@ -258,7 +258,7 @@ Após iniciar a API, acesse:
 | **Health Check** | `http://localhost:8000/api/v1/health` | Status da API |
 | **Status Rápido** | `http://localhost:8000/api/v1/status` | Verificação básica |
 
-### 🔧 Configuração de Ambiente
+###  Configuração de Ambiente
 
 #### **Variáveis de Ambiente Suportadas**
 ```bash
@@ -280,7 +280,7 @@ DATABASE_URL=sqlite:///./data/books.db
 ENVIRONMENT=development
 ```
 
-### 📊 Monitoramento da Execução
+###  Monitoramento da Execução
 
 #### **Verificação Rápida**
 ```bash
@@ -313,7 +313,7 @@ python main.py --log-level debug
 uvicorn main:app --log-level debug
 ```
 
-### ⚡ Performance e Otimização
+###  Performance e Otimização
 
 #### **Configuração para Desenvolvimento**
 ```bash
@@ -332,7 +332,7 @@ gunicorn main:app \
   --error-logfile logs/error.log
 ```
 
-### 🛑 Parar a API
+###  Parar a API
 
 ```bash
 # Se executando em primeiro plano: Ctrl+C
@@ -348,9 +348,9 @@ kill <PID>
 kill -9 <PID>
 ```
 
-## 📚 Documentação Completa da API
+##  Documentação Completa da API
 
-### 🌐 URLs Importantes
+###  URLs Importantes
 | Recurso | URL | Descrição |
 |---------|-----|-----------|
 | **API Principal** | `http://localhost:8000` | Endpoint raiz |
@@ -358,7 +358,7 @@ kill -9 <PID>
 | **Documentação ReDoc** | `http://localhost:8000/redoc` | Documentação alternativa |
 | **Health Check** | `http://localhost:8000/api/v1/health` | Status da API |
 
-### 📋 Schemas de Dados
+###  Schemas de Dados
 
 #### **Schema do Livro (Book)**
 ```json
@@ -410,9 +410,9 @@ kill -9 <PID>
 }
 ```
 
-### 🔗 Endpoints Principais
+###  Endpoints Principais
 
-#### **📖 Listar Livros**
+#### ** Listar Livros**
 ```http
 GET /api/v1/books
 ```
@@ -429,7 +429,7 @@ GET /api/v1/books
 
 ---
 
-#### **🔍 Buscar Livro por ID**
+#### ** Buscar Livro por ID**
 ```http
 GET /api/v1/books/{book_id}
 ```
@@ -445,7 +445,7 @@ GET /api/v1/books/{book_id}
 
 ---
 
-#### **🔎 Buscar Livros**
+#### ** Buscar Livros**
 ```http
 GET /api/v1/books/search
 ```
@@ -465,7 +465,7 @@ GET /api/v1/books/search
 
 ---
 
-#### **📂 Listar Categorias**
+#### ** Listar Categorias**
 ```http
 GET /api/v1/categories
 ```
@@ -483,7 +483,7 @@ GET /api/v1/categories
 
 ---
 
-#### **💰 Filtrar por Faixa de Preço**
+#### ** Filtrar por Faixa de Preço**
 ```http
 GET /api/v1/books/price-range
 ```
@@ -502,7 +502,7 @@ GET /api/v1/books/price-range
 
 ---
 
-#### **⭐ Top Livros Mais Bem Avaliados**
+#### ** Top Livros Mais Bem Avaliados**
 ```http
 GET /api/v1/books/top-rated
 ```
@@ -514,9 +514,9 @@ GET /api/v1/books/top-rated
 
 **Response:** `List[Book]`
 
-### 📊 Endpoints de Estatísticas
+###  Endpoints de Estatísticas
 
-#### **📈 Estatísticas Gerais**
+#### ** Estatísticas Gerais**
 ```http
 GET /api/v1/stats/overview
 ```
@@ -527,7 +527,7 @@ Retorna contagem total de livros, preço médio, distribuição de ratings e nú
 
 ---
 
-#### **📊 Estatísticas por Categoria**
+#### ** Estatísticas por Categoria**
 ```http
 GET /api/v1/stats/categories
 ```
@@ -536,9 +536,9 @@ GET /api/v1/stats/categories
 
 Para cada categoria: contagem de livros, preço médio, preço mínimo e máximo.
 
-### 🔧 Endpoints de Monitoramento
+###  Endpoints de Monitoramento
 
-#### **❤️ Health Check Completo**
+#### ** Health Check Completo**
 ```http
 GET /api/v1/health
 ```
@@ -549,7 +549,7 @@ Verifica conectividade com banco de dados e integridade dos dados.
 
 ---
 
-#### **⚡ Status Rápido**
+#### ** Status Rápido**
 ```http
 GET /api/v1/status
 ```
@@ -566,7 +566,7 @@ Endpoint ultra-rápido para verificação básica.
 
 ---
 
-#### **💾 Status dos Dados**
+#### ** Status dos Dados**
 ```http
 GET /api/v1/data-status
 ```
@@ -581,7 +581,7 @@ GET /api/v1/data-status
 
 Verificação específica da existência de dados no banco.
 
-### 🚫 Códigos de Erro
+###  Códigos de Erro
 
 | Código | Descrição | Exemplo |
 |--------|-----------|---------|
@@ -590,14 +590,14 @@ Verificação específica da existência de dados no banco.
 | **422** | Unprocessable Entity | Dados de entrada inválidos |
 | **500** | Internal Server Error | Erro interno do servidor |
 
-### 🔒 Headers de Response
+###  Headers de Response
 
 Todos os endpoints retornam:
 ```http
 Content-Type: application/json
 ```
 
-### 📝 Observações Importantes
+###  Observações Importantes
 
 1. **Paginação:** Sempre use os parâmetros `skip` e `limit` para navegação eficiente
 2. **Performance:** Endpoints de estatísticas podem ser mais lentos em datasets grandes
@@ -605,9 +605,9 @@ Content-Type: application/json
 4. **Encoding:** Todas as strings utilizam UTF-8
 5. **Timestamps:** Não há campos de data/hora nos dados atuais
 
-## 🧪 Exemplos Práticos de Uso
+##  Exemplos Práticos de Uso
 
-### 🚀 Testando com cURL
+###  Testando com cURL
 
 #### **1. Verificar Status da API**
 ```bash
@@ -885,7 +885,7 @@ curl -X GET "http://localhost:8000/api/v1/stats/categories" \
 ]
 ```
 
-### 🐍 Testando com Python
+###  Testando com Python
 
 #### **Exemplo com requests:**
 ```python
@@ -918,7 +918,7 @@ print(f"Total de livros: {stats['total_books']}")
 print(f"Preço médio: ${stats['average_price']:.2f}")
 ```
 
-### 🧪 Script de Testes Automatizados
+###  Script de Testes Automatizados
 
 Execute o script de testes para verificar todos os endpoints:
 
@@ -928,26 +928,26 @@ python test_production.py
 
 **Saída esperada:**
 ```
-🧪 Testing Book Recommender API
+ Testing Book Recommender API
 ===============================
-✅ API Status: OK
-✅ Health Check: healthy
-✅ Books listing: 100 books found
-✅ Book by ID: Found book with ID 1
-✅ Search by title: Found books matching 'light'
-✅ Search by category: Found books in 'Poetry'
-✅ Categories: 50 categories found
-✅ Price range: Found books between $20-$30
-✅ Top rated: Found top 10 rated books
-✅ Stats overview: Retrieved general statistics
-✅ Category stats: Retrieved stats for all categories
+ API Status: OK
+ Health Check: healthy
+ Books listing: 100 books found
+ Book by ID: Found book with ID 1
+ Search by title: Found books matching 'light'
+ Search by category: Found books in 'Poetry'
+ Categories: 50 categories found
+ Price range: Found books between $20-$30
+ Top rated: Found top 10 rated books
+ Stats overview: Retrieved general statistics
+ Category stats: Retrieved stats for all categories
 ===============================
-✅ All tests passed!
+ All tests passed!
 ```
 
-## 📊 Estrutura dos Dados
+##  Estrutura dos Dados
 
-### 🏗️ Modelo de Dados (Book)
+###  Modelo de Dados (Book)
 
 | Campo | Tipo | Descrição | Exemplo |
 |-------|------|-----------|---------|
@@ -960,7 +960,7 @@ python test_production.py
 | **image_url** | Text | URL da capa do livro | `"http://books.toscrape.com/media/..."` |
 | **link** | Text | URL da página do livro | `"http://books.toscrape.com/catalogue/..."` |
 
-### 💾 Estrutura do Banco de Dados
+###  Estrutura do Banco de Dados
 
 O projeto utiliza **SQLite** como banco local com índices otimizados:
 
@@ -983,7 +983,7 @@ CREATE INDEX idx_books_category ON books(category);
 CREATE INDEX idx_books_title ON books(title);
 ```
 
-### 📈 Pipeline de Dados ETL
+###  Pipeline de Dados ETL
 
 ```mermaid
 graph LR
@@ -999,50 +999,50 @@ graph LR
 
 **Etapas detalhadas:**
 
-1. **🕷️ Extração (scrape_books.py)**
+1. ** Extração (scrape_books.py)**
    - Navegação automatizada por todas as páginas
    - Parsing HTML com BeautifulSoup4
    - Extração de metadados estruturados
 
-2. **🔄 Transformação**
+2. ** Transformação**
    - Limpeza de caracteres especiais
    - Conversão de preços (string → float)
    - Normalização de categorias
    - Validação de URLs
 
-3. **💾 Carregamento (csv_to_db.py)**
+3. ** Carregamento (csv_to_db.py)**
    - Criação automática de tabelas
    - Inserção em lote para performance
    - Criação de índices otimizados
    - Validação de integridade
 
-4. **🚀 Disponibilização (FastAPI)**
+4. ** Disponibilização (FastAPI)**
    - Endpoints RESTful
    - Validação com Pydantic
    - Documentação automática
    - Tratamento de erros
 
-## 🎯 Casos de Uso e Aplicações
+##  Casos de Uso e Aplicações
 
-### 🤖 Machine Learning
+###  Machine Learning
 - **Sistema de Recomendação:** Features categóricas e numéricas prontas
 - **Análise de Sentimento:** Dados textuais dos títulos
 - **Clustering:** Agrupamento por preço/categoria/rating
 - **Previsão de Preços:** Regressão baseada em features
 
-### 📊 Analytics e BI
+###  Analytics e BI
 - **Dashboards:** Distribuição de preços e ratings
 - **Relatórios:** Performance por categoria
 - **Análise de Mercado:** Tendências de preços
 - **KPIs:** Métricas de catálogo
 
-### 🛒 E-commerce
+###  E-commerce
 - **Catálogo de Produtos:** Base para loja virtual
 - **Sistema de Busca:** Filtros avançados
 - **Recomendações:** "Livros similares"
 - **Gestão de Inventário:** Status de disponibilidade
 
-## 🛠️ Stack Tecnológico
+##  Stack Tecnológico
 
 ### **Backend Core**
 ```yaml
@@ -1083,41 +1083,41 @@ gunicorn==21.2.0        # WSGI server para produção
 psutil==5.9.8           # System monitoring
 ```
 
-## 🚀 Roadmap de Desenvolvimento
+##  Roadmap de Desenvolvimento
 
-### **Fase 1: Base (Concluída) ✅**
+### **Fase 1: Base (Concluída) **
 - [x] Web scraping automatizado
 - [x] Pipeline ETL completo
 - [x] API RESTful funcional
 - [x] Documentação interativa
 - [x] Containerização Docker
 
-### **Fase 2: Produção (Em Planejamento) 📋**
+### **Fase 2: Produção (Em Planejamento) **
 - [ ] Deploy em cloud (Render/Railway)
 - [ ] Autenticação JWT
 - [ ] Rate limiting
 - [ ] Logging estruturado
 - [ ] Monitoramento de performance
 
-### **Fase 3: ML Ready (Futuro) 🔮**
+### **Fase 3: ML Ready (Futuro) **
 - [ ] Endpoints específicos para ML
 - [ ] Feature store
 - [ ] Pipeline de treinamento
 - [ ] Modelo de recomendação
 - [ ] A/B testing framework
 
-### **Fase 4: Escala (Visão) 🎯**
+### **Fase 4: Escala (Visão) **
 - [ ] Cache distribuído (Redis)
 - [ ] Banco de produção (PostgreSQL)
 - [ ] Microserviços
 - [ ] Analytics em tempo real
 - [ ] Dashboard de métricas
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### **Problemas Comuns e Soluções**
 
-#### **❌ Erro: "Module not found"**
+#### ** Erro: "Module not found"**
 ```bash
 # Solução: Ativar ambiente virtual
 source venv/bin/activate  # Linux/Mac
@@ -1127,14 +1127,14 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-#### **❌ Erro: "Database not found"**
+#### ** Erro: "Database not found"**
 ```bash
 # Solução: Recriar base de dados
 mkdir -p data
 python scripts/csv_to_db.py
 ```
 
-#### **❌ Erro: "Port already in use"**
+#### ** Erro: "Port already in use"**
 ```bash
 # Solução: Usar porta diferente
 python main.py --port 8001
@@ -1143,14 +1143,14 @@ python main.py --port 8001
 lsof -ti:8000 | xargs kill -9
 ```
 
-#### **❌ Erro: "No data scraped"**
+#### ** Erro: "No data scraped"**
 ```bash
 # Solução: Verificar conectividade e re-executar
 curl -I https://books.toscrape.com/
 python scripts/scrape_books.py
 ```
 
-### **🔍 Logs e Debug**
+### ** Logs e Debug**
 ```bash
 # Logs detalhados
 uvicorn main:app --log-level debug
@@ -1162,7 +1162,7 @@ curl http://localhost:8000/api/v1/data-status
 python -c "import requests; print(requests.get('http://localhost:8000/api/v1/status').json())"
 ```
 
-## 🤝 Contribuição
+##  Contribuição
 
 ### **Como Contribuir**
 1. Faça fork do projeto
@@ -1176,24 +1176,24 @@ python -c "import requests; print(requests.get('http://localhost:8000/api/v1/sta
 - Inclua logs relevantes
 - Descreva passos para reproduzir o problema
 
-## 📝 Licença
+##  Licença
 
 Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Challenge da Pós-Tech**.
 
 ### **Uso Educacional**
-- ✅ Estudo pessoal
-- ✅ Referência para projetos acadêmicos
-- ✅ Base para expansão e melhorias
-- ✅ Portfolio profissional
+-  Estudo pessoal
+-  Referência para projetos acadêmicos
+-  Base para expansão e melhorias
+-  Portfolio profissional
 
 ### **Limitações**
-- ⚠️ Não usar para fins comerciais sem autorização
-- ⚠️ Dados do Books to Scrape sujeitos aos termos do site
-- ⚠️ API destinada a demonstração e aprendizado
+-  Não usar para fins comerciais sem autorização
+-  Dados do Books to Scrape sujeitos aos termos do site
+-  API destinada a demonstração e aprendizado
 
 ---
 
-## 👨‍💻 Sobre o Projeto
+##  Sobre o Projeto
 
 **Desenvolvido por:** Equipe Tech Challenge  
 **Curso:** Pós-Tech | Machine Learning Engineering - Fase 1  
@@ -1216,7 +1216,7 @@ Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Ch
 
 ---
 
-## 📚 Documentação Completa
+##  Documentação Completa
 
 | Documento | Descrição | Conteúdo |
 |-----------|-----------|----------|
@@ -1225,10 +1225,10 @@ Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Ch
 | **[DEPLOY.md](./DEPLOY.md)** | Instruções de deploy | Produção, cloud, configurações |
 | **[DOCKER_DEPLOY.md](./DOCKER_DEPLOY.md)** | Deploy com containers | Docker, Kubernetes, orquestração |
 
-### 🔗 Links Rápidos
-- 🚀 [Início Rápido](#-setup-automático-recomendado)
-- 🏗️ [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
-- 📚 [Documentação da API](#-documentação-completa-da-api)
-- 🧪 [Exemplos de Uso](#-exemplos-práticos-de-uso)
-- 🐳 [Deploy Docker](./DOCKER_DEPLOY.md)
-- 🔧 [Troubleshooting](#-troubleshooting)
+###  Links Rápidos
+-  [Início Rápido](#-setup-automático-recomendado)
+-  [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
+-  [Documentação da API](#-documentação-completa-da-api)
+-  [Exemplos de Uso](#-exemplos-práticos-de-uso)
+-  [Deploy Docker](./DOCKER_DEPLOY.md)
+-  [Troubleshooting](#-troubleshooting)
