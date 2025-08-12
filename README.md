@@ -1083,122 +1083,12 @@ gunicorn==21.2.0        # WSGI server para produção
 psutil==5.9.8           # System monitoring
 ```
 
-##  Roadmap de Desenvolvimento
-
-### **Fase 1: Base (Concluída) **
-- [x] Web scraping automatizado
-- [x] Pipeline ETL completo
-- [x] API RESTful funcional
-- [x] Documentação interativa
-- [x] Containerização Docker
-
-### **Fase 2: Produção (Em Planejamento) **
-- [ ] Deploy em cloud (Render/Railway)
-- [ ] Autenticação JWT
-- [ ] Rate limiting
-- [ ] Logging estruturado
-- [ ] Monitoramento de performance
-
-### **Fase 3: ML Ready (Futuro) **
-- [ ] Endpoints específicos para ML
-- [ ] Feature store
-- [ ] Pipeline de treinamento
-- [ ] Modelo de recomendação
-- [ ] A/B testing framework
-
-### **Fase 4: Escala (Visão) **
-- [ ] Cache distribuído (Redis)
-- [ ] Banco de produção (PostgreSQL)
-- [ ] Microserviços
-- [ ] Analytics em tempo real
-- [ ] Dashboard de métricas
-
-##  Troubleshooting
-
-### **Problemas Comuns e Soluções**
-
-#### ** Erro: "Module not found"**
-```bash
-# Solução: Ativar ambiente virtual
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-
-# Reinstalar dependências
-pip install -r requirements.txt
-```
-
-#### ** Erro: "Database not found"**
-```bash
-# Solução: Recriar base de dados
-mkdir -p data
-python scripts/csv_to_db.py
-```
-
-#### ** Erro: "Port already in use"**
-```bash
-# Solução: Usar porta diferente
-python main.py --port 8001
-
-# Ou matar processo que usa a porta
-lsof -ti:8000 | xargs kill -9
-```
-
-#### ** Erro: "No data scraped"**
-```bash
-# Solução: Verificar conectividade e re-executar
-curl -I https://books.toscrape.com/
-python scripts/scrape_books.py
-```
-
-### ** Logs e Debug**
-```bash
-# Logs detalhados
-uvicorn main:app --log-level debug
-
-# Verificar status dos dados
-curl http://localhost:8000/api/v1/data-status
-
-# Teste rápido de conectividade
-python -c "import requests; print(requests.get('http://localhost:8000/api/v1/status').json())"
-```
-
-##  Contribuição
-
-### **Como Contribuir**
-1. Faça fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-### **Reportar Bugs**
-- Use as [GitHub Issues](https://github.com/seu-usuario/book-recommender-api-pipeline/issues)
-- Inclua logs relevantes
-- Descreva passos para reproduzir o problema
-
-##  Licença
-
-Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Challenge da Pós-Tech**.
-
-### **Uso Educacional**
--  Estudo pessoal
--  Referência para projetos acadêmicos
--  Base para expansão e melhorias
--  Portfolio profissional
-
-### **Limitações**
--  Não usar para fins comerciais sem autorização
--  Dados do Books to Scrape sujeitos aos termos do site
--  API destinada a demonstração e aprendizado
-
----
-
 ##  Sobre o Projeto
 
-**Desenvolvido por:** Equipe Tech Challenge  
+**Desenvolvido por:** Cleiton Cardodo, Geovana Godoy Viana 
 **Curso:** Pós-Tech | Machine Learning Engineering - Fase 1  
-**Instituição:** [Sua Instituição]  
-**Data:** 2024  
+**Instituição:** Fiap  
+**Data:** agosto/2025
 
 ### **Objetivos Acadêmicos Atingidos:**
 - [x] Pipeline ETL completo
@@ -1206,6 +1096,8 @@ Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Ch
 - [x] Documentação profissional
 - [x] Containerização
 - [x] Práticas de desenvolvimento
+- [x] Deploy em cloud - Render
+- [x] Autenticação JWT
 
 ### **Tecnologias Demonstradas:**
 - [x] Python avançado
@@ -1228,7 +1120,3 @@ Este projeto foi desenvolvido para fins **educacionais** como parte do **Tech Ch
 ###  Links Rápidos
 -  [Início Rápido](#-setup-automático-recomendado)
 -  [Arquitetura](./PIPELINE.md#-arquitetura-geral-do-sistema)
--  [Documentação da API](#-documentação-completa-da-api)
--  [Exemplos de Uso](#-exemplos-práticos-de-uso)
--  [Deploy Docker](./DOCKER_DEPLOY.md)
--  [Troubleshooting](#-troubleshooting)

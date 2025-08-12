@@ -1,14 +1,14 @@
-# 📊 Pipeline de Dados - Book Recommender API
+#  Pipeline de Dados - Book Recommender API
 
 **Documentação Técnica Detalhada do Pipeline ETL**
 
 ---
 
-## 📋 Visão Geral
+##  Visão Geral
 
 Este documento detalha a arquitetura completa do pipeline de dados do Book Recommender API, desde a ingestão de dados até o consumo final pelos clientes.
 
-### 🎯 Objetivos do Pipeline
+###  Objetivos do Pipeline
 - **Automatizar** a extração de dados de livros
 - **Transformar** dados brutos em formato estruturado
 - **Disponibilizar** dados via API RESTful
@@ -17,7 +17,7 @@ Este documento detalha a arquitetura completa do pipeline de dados do Book Recom
 
 ---
 
-## 🏗️ Arquitetura Geral do Sistema
+##  Arquitetura Geral do Sistema
 
 ```mermaid
 graph TB
@@ -56,9 +56,9 @@ graph TB
 
 ---
 
-## 1️⃣ Fase de Ingestão (Data Ingestion)
+## 1⃣ Fase de Ingestão (Data Ingestion)
 
-### 🕷️ Web Scraping Component
+###  Web Scraping Component
 
 ```mermaid
 flowchart LR
@@ -80,15 +80,15 @@ flowchart LR
 
 #### **Componentes Principais:**
 
-**📁 Arquivo:** `scripts/scrape_books.py`
+** Arquivo:** `scripts/scrape_books.py`
 
-**🔧 Tecnologias:**
+** Tecnologias:**
 - `requests` - HTTP client
 - `BeautifulSoup4` - HTML parsing
 - `time` - Rate limiting
 - `csv` - Data export
 
-**📊 Dados Extraídos:**
+** Dados Extraídos:**
 ```python
 {
     "title": str,           # Título do livro
@@ -101,7 +101,7 @@ flowchart LR
 }
 ```
 
-**⚡ Performance:**
+** Performance:**
 - **Rate Limiting:** 1 segundo entre requests
 - **Batch Processing:** 20 livros por página
 - **Error Handling:** Retry automático em falhas
@@ -133,9 +133,9 @@ sequenceDiagram
 
 ---
 
-## 2️⃣ Fase de Processamento (Data Processing)
+## 2⃣ Fase de Processamento (Data Processing)
 
-### 🔄 ETL Pipeline
+###  ETL Pipeline
 
 ```mermaid
 flowchart TD
@@ -168,14 +168,14 @@ flowchart TD
 
 #### **Transformações de Dados:**
 
-**📁 Arquivo:** `scripts/csv_to_db.py`
+** Arquivo:** `scripts/csv_to_db.py`
 
-**🔧 Tecnologias:**
+** Tecnologias:**
 - `pandas` - Data manipulation
 - `SQLAlchemy` - ORM
 - `sqlite3` - Database operations
 
-**📝 Transformações Aplicadas:**
+** Transformações Aplicadas:**
 
 1. **Limpeza de Preços:**
 ```python
@@ -211,9 +211,9 @@ pie title Métricas de Qualidade
 
 ---
 
-## 3️⃣ Camada de API (API Layer)
+## 3⃣ Camada de API (API Layer)
 
-### 🚀 FastAPI Application
+###  FastAPI Application
 
 ```mermaid
 graph LR
@@ -239,15 +239,15 @@ graph LR
 
 #### **Componentes da API:**
 
-**📁 Estrutura:**
+** Estrutura:**
 ```
 api/
-├── database.py     # Database connection & models
-├── schemas.py      # Pydantic validation schemas
-└── crud.py         # Database operations
+ database.py     # Database connection & models
+ schemas.py      # Pydantic validation schemas
+ crud.py         # Database operations
 ```
 
-**🔧 Tecnologias:**
+** Tecnologias:**
 - `FastAPI` - Web framework
 - `SQLAlchemy` - ORM
 - `Pydantic` - Data validation
@@ -302,9 +302,9 @@ class Book(BaseModel):
 
 ---
 
-## 4️⃣ Fase de Consumo (Data Consumption)
+## 4⃣ Fase de Consumo (Data Consumption)
 
-### 📱 Padrões de Consumo
+###  Padrões de Consumo
 
 ```mermaid
 graph TB
@@ -334,7 +334,7 @@ graph TB
 
 #### **Casos de Uso por Tipo de Cliente:**
 
-**🌐 Web Applications:**
+** Web Applications:**
 ```javascript
 // Exemplo de consumo frontend
 fetch('/api/v1/books?limit=10')
@@ -342,7 +342,7 @@ fetch('/api/v1/books?limit=10')
   .then(books => displayBooks(books));
 ```
 
-**📊 Data Analysis:**
+** Data Analysis:**
 ```python
 # Exemplo de análise de dados
 import requests
@@ -353,7 +353,7 @@ df = pd.DataFrame(response.json())
 price_analysis = df.groupby('category')['price'].mean()
 ```
 
-**🤖 ML Pipelines:**
+** ML Pipelines:**
 ```python
 # Exemplo de feature extraction
 def extract_features():
@@ -368,9 +368,9 @@ def extract_features():
 
 ---
 
-## 📊 Monitoramento e Métricas
+##  Monitoramento e Métricas
 
-### 🔍 Health Checks
+###  Health Checks
 
 ```mermaid
 graph LR
@@ -392,18 +392,18 @@ graph LR
     style J fill:#ffcdd2
 ```
 
-### 📈 Métricas de Performance
+###  Métricas de Performance
 
 | Métrica | Valor Atual | Target | Status |
 |---------|-------------|---------|---------|
-| **API Response Time** | ~150ms | <200ms | ✅ |
-| **Database Query Time** | ~50ms | <100ms | ✅ |
-| **Scraping Time** | ~30min | <45min | ✅ |
-| **Data Freshness** | Daily | Daily | ✅ |
-| **Error Rate** | <1% | <5% | ✅ |
-| **Uptime** | 99.5% | >99% | ✅ |
+| **API Response Time** | ~150ms | <200ms |  |
+| **Database Query Time** | ~50ms | <100ms |  |
+| **Scraping Time** | ~30min | <45min |  |
+| **Data Freshness** | Daily | Daily |  |
+| **Error Rate** | <1% | <5% |  |
+| **Uptime** | 99.5% | >99% |  |
 
-### 🚨 Alertas e Monitoramento
+###  Alertas e Monitoramento
 
 ```mermaid
 flowchart TD
@@ -426,9 +426,9 @@ flowchart TD
 
 ---
 
-## 🔄 Pipeline Automation
+##  Pipeline Automation
 
-### ⏰ Agendamento de Tarefas
+###  Agendamento de Tarefas
 
 ```mermaid
 gantt
@@ -447,7 +447,7 @@ gantt
     Error Logging    :crit, logging, 00:00, 24:00
 ```
 
-### 🔧 Configuração de Deploy
+###  Configuração de Deploy
 
 ```yaml
 # pipeline-config.yml
@@ -475,9 +475,9 @@ pipeline:
 
 ---
 
-## 🚀 Escalabilidade e Futuras Melhorias
+##  Escalabilidade e Futuras Melhorias
 
-### 📈 Roadmap de Evolução
+###  Roadmap de Evolução
 
 ```mermaid
 timeline
@@ -508,7 +508,7 @@ timeline
         : Global Distribution
 ```
 
-### 🎯 Melhorias Propostas
+###  Melhorias Propostas
 
 1. **Performance:**
    - Implementar cache Redis
@@ -532,28 +532,28 @@ timeline
 
 ---
 
-## 📋 Conclusão
+##  Conclusão
 
 Este pipeline ETL foi projetado para ser:
 
-- ✅ **Robusto** - Com tratamento de erros e validações
-- ✅ **Escalável** - Preparado para crescimento
-- ✅ **Monitorável** - Com health checks e métricas
-- ✅ **Manutenível** - Código limpo e documentado
-- ✅ **Eficiente** - Otimizado para performance
+-  **Robusto** - Com tratamento de erros e validações
+-  **Escalável** - Preparado para crescimento
+-  **Monitorável** - Com health checks e métricas
+-  **Manutenível** - Código limpo e documentado
+-  **Eficiente** - Otimizado para performance
 
 O pipeline atual atende perfeitamente aos requisitos do projeto educacional, mas está preparado para evoluir conforme as necessidades de produção.
 
 ---
 
-**📊 Métricas Atuais do Pipeline:**
+** Métricas Atuais do Pipeline:**
 - **1000+ livros** processados diariamente
 - **15 endpoints** API disponíveis
 - **<200ms** tempo médio de resposta
 - **99.5%** uptime da API
 - **<1%** taxa de erro
 
-**🔗 Documentação Relacionada:**
+** Documentação Relacionada:**
 - [README.md](./README.md) - Documentação geral
 - [DEPLOY.md](./DEPLOY.md) - Instruções de deploy
 - [DOCKER_DEPLOY.md](./DOCKER_DEPLOY.md) - Deploy com Docker
