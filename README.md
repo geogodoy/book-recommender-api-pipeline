@@ -2,6 +2,11 @@
 
 **Tech Challenge - Pós-Tech | Fase 1 - Machine Learning Engineering**
 
+**Desenvolvido por:** Cleiton Cardodo, Geovana Godoy Viana 
+**Instituição:** Fiap  
+**Data:** agosto/2025
+
+
 Uma API RESTful completa para consulta de livros com pipeline de dados automatizado, desenvolvida como parte do Tech Challenge da primeira fase do curso de Machine Learning Engineering.
 
 ##  Descrição do Projeto
@@ -247,13 +252,6 @@ sqlalchemy==2.0.36      # SQL toolkit e ORM
 gunicorn==21.2.0        # WSGI server para produção
 psutil==5.9.8           # System monitoring
 ```
-
-##  Sobre o Projeto
-
-**Desenvolvido por:** Cleiton Cardodo, Geovana Godoy Viana 
-**Curso:** Pós-Tech | Machine Learning Engineering - Fase 1  
-**Instituição:** Fiap  
-**Data:** agosto/2025
 
 ### **Objetivos Acadêmicos Atingidos:**
 - [x] Pipeline ETL completo
