@@ -67,9 +67,6 @@ As instruções completas de execução, URLs de acesso, monitoramento, performa
 
 - Consulte `USAGE.md`: [Execução da API (Runbook)](./USAGE.md)
 
-###  Configuração de Ambiente
-
-As variáveis de ambiente e o uso de arquivo `.env` estão documentados em [Instalação e Configuração](./INSTALLATION.md)
 
 ###  Monitoramento da Execução
 
