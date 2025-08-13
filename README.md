@@ -2,7 +2,7 @@
 
 **Tech Challenge - Pós-Tech | Fase 1 - Machine Learning Engineering**
 
-**Desenvolvido por:** Cleiton Cardodo, Geovana Godoy Viana 
+**Desenvolvido por:** Cleiton Cardodo, Geovana Godoy Viana
 **Instituição:** Fiap  
 **Data:** agosto/2025
 
@@ -105,92 +105,12 @@ gunicorn main:app \
   --error-logfile logs/error.log
 ```
 
-###  Parar a API
-
-Consulte o guia `USAGE.md`.
-
 ##  Documentação da API
 
 As rotas, schemas, exemplos e códigos de erro foram movidos para um guia dedicado:
 
 - Consulte `API_REFERENCE.md` para detalhes: [Referência da API](./API_REFERENCE.md)
 
-##  Estrutura dos Dados
-
-###  Modelo de Dados (Book)
-
-| Campo | Tipo | Descrição | Exemplo |
-|-------|------|-----------|---------|
-| **id** | Integer | Identificador único (chave primária) | `1` |
-| **title** | String | Nome completo do livro | `"A Light in the Attic"` |
-| **price** | Float | Preço em libras esterlinas | `51.77` |
-| **rating** | String | Avaliação textual (One a Five) | `"Three"` |
-| **availability** | String | Status de disponibilidade | `"In stock"` |
-| **category** | String | Categoria/gênero do livro | `"Poetry"` |
-| **image_url** | Text | URL da capa do livro | `"http://books.toscrape.com/media/..."` |
-| **link** | Text | URL da página do livro | `"http://books.toscrape.com/catalogue/..."` |
-
-###  Estrutura do Banco de Dados
-
-O projeto utiliza **SQLite** como banco local com índices otimizados:
-
-```sql
-CREATE TABLE books (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title VARCHAR NOT NULL,
-    price FLOAT,
-    rating VARCHAR,
-    availability VARCHAR,
-    category VARCHAR,
-    image_url TEXT,
-    link TEXT
-);
-
--- Índices para performance
-CREATE INDEX idx_books_price ON books(price);
-CREATE INDEX idx_books_rating ON books(rating);
-CREATE INDEX idx_books_category ON books(category);
-CREATE INDEX idx_books_title ON books(title);
-```
-
-###  Pipeline de Dados ETL
-
-```mermaid
-graph LR
-    A[Books to Scrape] --> B[Web Scraper]
-    B --> C[Raw HTML]
-    C --> D[BeautifulSoup Parser]
-    D --> E[Data Cleaning]
-    E --> F[CSV Export]
-    F --> G[SQLite Database]
-    G --> H[FastAPI]
-    H --> I[JSON Response]
-```
-
-**Etapas detalhadas:**
-
-1. ** Extração (scrape_books.py)**
-   - Navegação automatizada por todas as páginas
-   - Parsing HTML com BeautifulSoup4
-   - Extração de metadados estruturados
-
-2. ** Transformação**
-   - Limpeza de caracteres especiais
-   - Conversão de preços (string → float)
-   - Normalização de categorias
-   - Validação de URLs
-
-3. ** Carregamento (csv_to_db.py)**
-   - Criação automática de tabelas
-   - Inserção em lote para performance
-   - Criação de índices otimizados
-   - Validação de integridade
-
-4. ** Disponibilização (FastAPI)**
-   - Endpoints RESTful
-   - Validação com Pydantic
-   - Documentação automática
-   - Tratamento de erros
 
 ##  Casos de Uso e Aplicações
 
