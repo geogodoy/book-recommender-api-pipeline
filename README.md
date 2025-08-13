@@ -2,7 +2,7 @@
 
 **Tech Challenge - Pós-Tech | Fase 1 - Machine Learning Engineering**
 
-**Desenvolvido por:** Cleiton Cardodo, Geovana Godoy Viana
+**Desenvolvido por:** Cleiton Cardoso, Geovana Godoy Viana
 **Instituição:** Fiap  
 **Data:** agosto/2025
 
